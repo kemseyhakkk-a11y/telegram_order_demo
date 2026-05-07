@@ -14,6 +14,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     ready();
@@ -50,15 +51,13 @@ function App() {
   }
 
   useEffect(() => {
-    if (tg && cart.length > 0) {
-      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-      tg.MainButton.setText(`View Cart ($${total.toFixed(2)})`);
-      tg.MainButton.show();
-      tg.MainButton.onClick(() => setView('cart'));
-    } else if (tg) {
-      tg.MainButton.hide();
+    if (tg) {
+      tg.BackButton.onClick(() => {
+        if (view === 'cart') setView('menu');
+        else if (view === 'checkout') setView('cart');
+      });
     }
-  }, [cart, tg]);
+  }, [tg, view]);
 
   const addToCart = (item) => {
     setCart((prev) => {
@@ -87,13 +86,18 @@ function App() {
   const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  const filteredItems = items.filter((item) => item.category_id === selectedCategory);
+  const filteredItems = items.filter((item) => {
+    const matchesCategory = item.category_id === selectedCategory;
+    const matchesSearch = !searchQuery || 
+      item.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   if (loading) {
     return (
       <div className="loading-screen">
         <div className="loading-spinner" />
-        <p style={{ color: '#a1a1aa' }}>Loading menu...</p>
+        <p style={{ color: '#94a3b8' }}>Loading menu...</p>
       </div>
     );
   }
@@ -126,38 +130,59 @@ function App() {
     <div className="app">
       <header className="app-header">
         <div className="header-content">
-          <div className="brand">
-            <div className="brand-icon">🍽️</div>
-            <h1>Restaurant</h1>
+          <div>
+            <p className="brand-label">Tasty Bites</p>
+            <h1 className="brand">Today's Menu</h1>
           </div>
-          <button 
-            className="cart-btn" 
-            onClick={() => setView('cart')}
-            aria-label={`Shopping cart with ${cartCount} items`}
-          >
-            🛒 Cart
-            {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
-          </button>
+        </div>
+
+        <div className="search-container">
+          <div className="search-wrapper">
+            <span className="search-icon">🔍</span>
+            <input
+              type="search"
+              className="search-input"
+              placeholder="Search dishes..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search menu"
+            />
+          </div>
+        </div>
+
+        <div className="categories-container">
+          <div className="categories-scroll">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                className={`category-btn ${selectedCategory === cat.id ? 'active' : ''}`}
+                onClick={() => setSelectedCategory(cat.id)}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
         </div>
       </header>
 
-      <div className="categories-container">
-        <div className="categories-scroll">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              className={`category-btn ${selectedCategory === cat.id ? 'active' : ''}`}
-              onClick={() => setSelectedCategory(cat.id)}
-              aria-pressed={selectedCategory === cat.id}
-            >
-              <span className="category-icon" aria-hidden="true">{cat.icon}</span>
-              <span className="category-name">{cat.name}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-
       <Menu items={filteredItems} onAddToCart={addToCart} />
+
+      {cartCount > 0 && (
+        <footer className="cart-bar">
+          <div className="cart-content">
+            <div className="cart-info">
+              <span className="cart-count">{cartCount} items</span>
+              <span className="cart-total">${cartTotal.toFixed(2)} total</span>
+            </div>
+            <button 
+              className="cart-checkout-btn"
+              onClick={() => setView('cart')}
+            >
+              View cart & checkout
+            </button>
+          </div>
+        </footer>
+      )}
     </div>
   );
 }

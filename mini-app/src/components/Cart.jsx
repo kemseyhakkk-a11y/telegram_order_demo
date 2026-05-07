@@ -4,10 +4,10 @@ function Cart({ cart, total, onBack, onCheckout, onRemove }) {
       <div className="cart-view">
         <header className="cart-header">
           <button className="back-btn" onClick={onBack}>← Back</button>
-          <h1>🛒 Your Cart</h1>
+          <h1>Your Cart</h1>
         </header>
         <div className="empty-cart" aria-live="polite">
-          <span className="empty-icon" aria-hidden="true">🛒</span>
+          <span className="empty-icon">🛒</span>
           <h2>Your cart is empty</h2>
           <p>Add some delicious items from the menu!</p>
           <button className="checkout-btn" onClick={onBack}>Browse Menu</button>
@@ -20,7 +20,7 @@ function Cart({ cart, total, onBack, onCheckout, onRemove }) {
     <div className="cart-view">
       <header className="cart-header">
         <button className="back-btn" onClick={onBack}>← Back</button>
-        <h1>🛒 Your Cart</h1>
+        <h1>Your Cart</h1>
       </header>
 
       <div className="cart-items">
@@ -41,7 +41,9 @@ function Cart({ cart, total, onBack, onCheckout, onRemove }) {
                 className="remove-btn" 
                 onClick={() => onRemove(item.id)}
                 aria-label={`Remove ${item.name}`}
-              >−</button>
+              >
+                −
+              </button>
             </div>
           </div>
         ))}

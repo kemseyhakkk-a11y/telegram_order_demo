@@ -55,7 +55,7 @@ function Checkout({ cart, total, telegramUser, onBack, onComplete }) {
     <div className="checkout-view">
       <header className="checkout-header">
         <button className="back-btn" onClick={onBack}>← Back</button>
-        <h1>📝 Confirm Order</h1>
+        <h1>Confirm Order</h1>
       </header>
 
       <form className="checkout-form" onSubmit={handleSubmit}>
