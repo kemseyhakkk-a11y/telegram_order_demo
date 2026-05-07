@@ -14,6 +14,49 @@
   --border: #334155;
   --glass-bg: rgba(15, 23, 42, 0.95);
   --glass-border: rgba(255, 255, 255, 0.08);
+  --card-bg: rgba(30, 41, 59, 0.85);
+  --card-border: rgba(51, 65, 85, 0.5);
+}
+
+/* Light Mode */
+body.light-mode {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #e2e8f0;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --accent: #059669;
+  --accent-hover: #10b981;
+  --accent-glow: 0 0 20px rgba(5, 150, 105, 0.3);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(226, 232, 240, 0.8);
+  background: 
+    linear-gradient(to bottom, rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.95)),
+    url('/background2.jpg') center/cover no-repeat fixed;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+body.light-mode .menu-section,
+body.light-mode .menu-item,
+body.light-mode .cart-item,
+body.light-mode .order-summary,
+body.light-mode .category-tab {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+}
+
+body.light-mode .app-header,
+body.light-mode .cart-bar,
+body.light-mode .cart-footer,
+body.light-mode .checkout-header {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
 }
 
 * {
@@ -33,9 +76,31 @@ html, body {
 
 body {
   background: 
-    radial-gradient(ellipse at 30% 0%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 100%, rgba(6, 78, 59, 0.1) 0%, transparent 50%),
-    var(--bg-primary);
+    linear-gradient(to bottom, rgba(2, 6, 23, 0.3), rgba(2, 6, 23, 0.5)),
+    url('/background2.jpg') center/cover no-repeat fixed;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-card-hover);
+  transform: scale(1.1);
 }
 
 /* Header */
@@ -53,6 +118,19 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 .brand-label {
@@ -96,7 +174,7 @@ body {
   border-radius: 12px;
   font-size: 14px;
   color: var(--text-primary);
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .search-input:focus {
@@ -109,67 +187,86 @@ body {
   color: var(--text-muted);
 }
 
-/* Categories - Tab Style */
-.categories-container {
-  padding: 12px 16px;
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
-}
-
-.categories-tabs {
+/* Menu Sections with Collapsible */
+.menu-sections {
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
-.category-tab {
+.menu-section {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.menu-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+}
+
+.section-header {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease;
 }
 
-.category-tab:hover {
+.section-header:hover {
   background: var(--bg-card-hover);
 }
 
-.category-tab.active {
-  background: var(--accent);
-  border-color: var(--accent);
+.section-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.category-tab.active .category-name {
-  color: #020617;
+.section-icon {
+  font-size: 24px;
+}
+
+.section-title {
+  font-size: 16px;
   font-weight: 600;
+  color: var(--text-primary);
 }
 
-.category-tab .category-icon {
-  font-size: 20px;
-}
-
-.category-tab .category-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  flex: 1;
-}
-
-.category-tab .item-count {
-  font-size: 11px;
+.section-count {
+  font-size: 12px;
   color: var(--text-muted);
   background: var(--bg-secondary);
-  padding: 2px 8px;
-  border-radius: 10px;
+  padding: 4px 10px;
+  border-radius: 12px;
 }
 
-.category-tab.active .item-count {
-  background: rgba(0,0,0,0.2);
-  color: #020617;
+.section-arrow {
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+
+.section-header.expanded .section-arrow {
+  transform: rotate(180deg);
+}
+
+.section-content {
+  padding: 0 12px 12px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Menu Grid */
@@ -190,7 +287,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .menu-item:hover {
@@ -249,16 +346,72 @@ body {
   background: var(--accent);
   color: #020617;
   border: none;
-  padding: 6px 12px;
-  border-radius: 16px;
-  font-size: 11px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-btn:hover {
   background: var(--accent-hover);
+  transform: scale(1.1);
+}
+
+/* Quantity Controls */
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  padding: 4px;
+}
+
+.qty-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-btn.minus {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+.qty-btn.minus:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.qty-btn.plus {
+  background: var(--accent);
+  color: #020617;
+}
+
+.qty-btn.plus:hover {
+  background: var(--accent-hover);
+}
+
+.qty-value {
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+  color: var(--text-primary);
 }
 
 /* Cart Bar */
@@ -312,7 +465,7 @@ body {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   box-shadow: var(--accent-glow);
 }
 
@@ -348,7 +501,7 @@ body {
   color: var(--text-primary);
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .back-btn:hover {
@@ -415,26 +568,6 @@ body {
   text-align: center;
 }
 
-.remove-btn {
-  background: rgba(239, 68, 68, 0.1);
-  color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.remove-btn:hover {
-  background: #ef4444;
-  color: white;
-}
-
 .cart-footer {
   position: fixed;
   bottom: 0;
@@ -474,7 +607,7 @@ body {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   box-shadow: var(--accent-glow);
 }
 
@@ -531,7 +664,7 @@ body {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   box-shadow: var(--accent-glow);
 }
 

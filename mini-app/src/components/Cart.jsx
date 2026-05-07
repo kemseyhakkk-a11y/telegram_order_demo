@@ -1,4 +1,4 @@
-function Cart({ cart, total, onBack, onCheckout, onRemove }) {
+function Cart({ cart, total, onBack, onCheckout, onUpdateQuantity }) {
   if (cart.length === 0) {
     return (
       <div className="cart-view">
@@ -36,14 +36,17 @@ function Cart({ cart, total, onBack, onCheckout, onRemove }) {
               </div>
             </div>
             <div className="cart-item-actions">
-              <span className="quantity">x{item.quantity}</span>
               <button 
-                className="remove-btn" 
-                onClick={() => onRemove(item.id)}
-                aria-label={`Remove ${item.name}`}
-              >
-                −
-              </button>
+                className="qty-btn minus"
+                onClick={() => onUpdateQuantity(item.id, -1)}
+                aria-label="Decrease quantity"
+              >−</button>
+              <span className="quantity">{item.quantity}</span>
+              <button 
+                className="qty-btn plus"
+                onClick={() => onUpdateQuantity(item.id, 1)}
+                aria-label="Increase quantity"
+              >+</button>
             </div>
           </div>
         ))}

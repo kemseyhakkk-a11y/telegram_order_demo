@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
+import { generateReceiptImage } from '../lib/receiptGenerator';
 
 function Checkout({ cart, total, telegramUser, onBack, onComplete }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,6 +42,35 @@ function Checkout({ cart, total, telegramUser, onBack, onComplete }) {
         .insert(orderItems);
 
       if (itemsError) throw itemsError;
+
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+      // Send receipt to user's Telegram chat
+      try {
+        const receiptBlob = await generateReceiptImage(
+          cart, 
+          total, 
+          order.id, 
+          telegramUser?.first_name || 'Customer'
+        );
+
+        const formData = new FormData();
+        formData.append('photo', receiptBlob, 'receipt.png');
+        formData.append('chat_id', telegramUser?.id);
+        formData.append('caption', `🧾 Order #${order.id} Confirmed! Your order has been received and will be prepared shortly.`);
+
+        await fetch(`https://api.telegram.org/bot${import.meta.env.VITE_TELEGRAM_BOT_TOKEN}/sendPhoto`, {
+          method: 'POST',
+          body: formData
+        });
+
+        // Also send to group chat (text only)
+        const groupText = `🛒 *New Order #${order.id}*\n\n👤 *Customer:* ${telegramUser?.first_name || 'Customer'}\n📍 *Pickup*\n\n*Items:*\n${cart.map(item => `• ${item.name} x${item.quantity} — $${(item.price * item.quantity).toFixed(2)}`).join('\n')}\n\n─────────────────────\n📦 Items: ${totalItems}\n💰 Total: $${total.toFixed(2)}\n─────────────────────\n⏰ ${new Date().toLocaleTimeString()}`;
+
+        await fetch(`https://api.telegram.org/bot${import.meta.env.VITE_TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=-5178890371&text=${encodeURIComponent(groupText)}&parse_mode=Markdown`);
+      } catch (receiptErr) {
+        console.warn('Failed to send receipt:', receiptErr);
+      }
 
       onComplete();
     } catch (err) {
