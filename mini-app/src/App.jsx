@@ -93,7 +93,7 @@ function App() {
     return (
       <div className="loading-screen">
         <div className="loading-spinner" />
-        <p>Loading menu...</p>
+        <p style={{ color: '#a1a1aa' }}>Loading menu...</p>
       </div>
     );
   }
@@ -124,24 +124,37 @@ function App() {
 
   return (
     <div className="app">
-      <header className="header">
-        <h1>🍽️ Restaurant Menu</h1>
-        <button className="cart-btn" onClick={() => setView('cart')} aria-label={`Shopping cart with ${cartCount} items`}>
-          🛒 {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
-        </button>
+      <header className="app-header">
+        <div className="header-content">
+          <div className="brand">
+            <div className="brand-icon">🍽️</div>
+            <h1>Restaurant</h1>
+          </div>
+          <button 
+            className="cart-btn" 
+            onClick={() => setView('cart')}
+            aria-label={`Shopping cart with ${cartCount} items`}
+          >
+            🛒 Cart
+            {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+          </button>
+        </div>
       </header>
 
-      <div className="categories">
-        {categories.map((cat) => (
-          <button
-            key={cat.id}
-            className={`category-btn ${selectedCategory === cat.id ? 'active' : ''}`}
-            onClick={() => setSelectedCategory(cat.id)}
-          >
-            <span className="category-icon" aria-hidden="true">{cat.icon}</span>
-            <span className="category-name">{cat.name}</span>
-          </button>
-        ))}
+      <div className="categories-container">
+        <div className="categories-scroll">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              className={`category-btn ${selectedCategory === cat.id ? 'active' : ''}`}
+              onClick={() => setSelectedCategory(cat.id)}
+              aria-pressed={selectedCategory === cat.id}
+            >
+              <span className="category-icon" aria-hidden="true">{cat.icon}</span>
+              <span className="category-name">{cat.name}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
       <Menu items={filteredItems} onAddToCart={addToCart} />
