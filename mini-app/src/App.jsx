@@ -155,16 +155,21 @@ function App() {
         </div>
 
         <div className="categories-container">
-          <div className="categories-scroll">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                className={`category-btn ${selectedCategory === cat.id ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(cat.id)}
-              >
-                {cat.name}
-              </button>
-            ))}
+          <div className="categories-tabs">
+            {categories.map((cat) => {
+              const itemCount = items.filter(i => i.category_id === cat.id).length;
+              return (
+                <button
+                  key={cat.id}
+                  className={`category-tab ${selectedCategory === cat.id ? 'active' : ''}`}
+                  onClick={() => setSelectedCategory(cat.id)}
+                >
+                  <span className="category-icon">{cat.icon}</span>
+                  <span className="category-name">{cat.name}</span>
+                  <span className="item-count">{itemCount}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </header>
