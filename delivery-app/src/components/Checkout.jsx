@@ -3,13 +3,37 @@ import { supabase } from '../lib/supabase';
 import { generateReceiptImage } from '../lib/receiptGenerator';
 
 const DELIVERY_GROUP_ID = '-5178890371';
+const DELIVERY_BOT_TOKEN = '8721362023:AAGUUSAmAGxN6CszdSnO4yK0MIoYAkyRmQg';
 
-function Checkout({ cart, total, telegramUser, onBack, onComplete }) {
+function Checkout({ cart, total, telegramUser, onBack, onComplete, tg }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [phone, setPhone] = useState('');
   const [note, setNote] = useState('');
+  const [customerLocation, setCustomerLocation] = useState(null);
+
+  const shareLocation = () => {
+    if (!navigator.geolocation) {
+      setError('Location not supported on this device');
+      return;
+    }
+    
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const loc = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        setCustomerLocation(loc);
+        setDeliveryAddress(`📍 Location shared (${loc.lat.toFixed(4)}, ${loc.lng.toFixed(4)})`);
+      },
+      () => {
+        setError('Please allow location access or type your address manually');
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +61,8 @@ function Checkout({ cart, total, telegramUser, onBack, onComplete }) {
           total_amount: total,
           telegram_user_id: telegramUser?.id || null,
           order_type: 'delivery',
+          customer_lat: customerLocation?.lat || null,
+          customer_lng: customerLocation?.lng || null,
           status: 'pending',
         })
         .select()
@@ -74,22 +100,47 @@ function Checkout({ cart, total, telegramUser, onBack, onComplete }) {
         formData.append('chat_id', telegramUser?.id);
         formData.append('caption', `🧾 Order #${order.id} Confirmed!\n📍 Delivery to: ${deliveryAddress}\n📞 ${phone}\n\n📍 Please share your live location when the driver is on the way.`);
 
-        await fetch(`https://api.telegram.org/bot${import.meta.env.VITE_TELEGRAM_BOT_TOKEN}/sendPhoto`, {
+        const DELIVERY_BOT_TOKEN = '8721362023:AAGUUSAmAGxN6CszdSnO4yK0MIoYAkyRmQg';
+
+        await fetch(`https://api.telegram.org/bot${DELIVERY_BOT_TOKEN}/sendPhoto`, {
           method: 'POST',
           body: formData
         });
 
-        // Send to delivery group with inline buttons
-        const deliveryGroupText = `🛵 *New Delivery Order #${order.id}*\n\n👤 *Customer:* ${telegramUser?.first_name || 'Customer'}\n📍 *Address:* ${deliveryAddress}\n📞 *Phone:* ${phone}\n📝 *Note:* ${note || 'None'}\n\n*Items:*\n${cart.map(item => `• ${item.name} x${item.quantity} — $${(item.price * item.quantity).toFixed(2)}`).join('\n')}\n\n─────────────────────\n📦 Items: ${totalItems}\n💰 Total: $${total.toFixed(2)}\n─────────────────────`;
+        // Send to delivery group - clean single message
+        const tgUsername = telegramUser?.username 
+          ? `<a href="https://t.me/${telegramUser.username}">@${telegramUser.username}</a>`
+          : telegramUser?.first_name || 'Customer';
+        
+        const itemsList = cart.map(item => `┃ ${item.name} x${item.quantity} — $${(item.price * item.quantity).toFixed(2)}`).join('\n');
+        const locLine = customerLocation ? `\n┃ 📌 <b>Location:</b> Shared via GPS` : '';
+        
+        const deliveryGroupText = `🛵 <b>New Delivery Order #${order.id}</b>\n\n┏━━━━━━━━━━━━━━━━━━┓\n┃ 👤 <b>Customer:</b> ${tgUsername}\n┃ 📍 <b>Address:</b> ${deliveryAddress}\n┃ 📞 <b>Phone:</b> ${phone}\n┃ 📝 <b>Note:</b> ${note || 'None'}${locLine}\n┃\n${itemsList}\n┃\n┃ 📦 <b>${totalItems} items</b> — 💰 <b>$${total.toFixed(2)}</b>\n┗━━━━━━━━━━━━━━━━━━┛`;
+
+        const keyboardButtons = [[
+          { text: '🚴 Take Order', callback_data: `take_order_${order.id}` }
+        ]];
+        
+        if (customerLocation) {
+          keyboardButtons[0].push({ text: '📍 Show Map', url: `https://maps.google.com/maps?q=${customerLocation.lat},${customerLocation.lng}` });
+        }
+        
+        keyboardButtons[0].push({ text: '✅ Delivered', callback_data: `delivered_${order.id}` });
 
         const keyboard = JSON.stringify({
-          inline_keyboard: [[
-            { text: '🚴 Take Order', callback_data: `take_order_${order.id}` },
-            { text: '✅ Delivered', callback_data: `delivered_${order.id}` }
-          ]]
+          inline_keyboard: keyboardButtons
         });
 
-        await fetch(`https://api.telegram.org/bot${import.meta.env.VITE_TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${DELIVERY_GROUP_ID}&text=${encodeURIComponent(deliveryGroupText)}&parse_mode=Markdown&reply_markup=${encodeURIComponent(keyboard)}`);
+        await fetch(`https://api.telegram.org/bot${DELIVERY_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: DELIVERY_GROUP_ID,
+            text: deliveryGroupText,
+            parse_mode: 'HTML',
+            reply_markup: { inline_keyboard: keyboardButtons }
+          })
+        });
       } catch (receiptErr) {
         console.warn('Failed to send notifications:', receiptErr);
       }
@@ -118,15 +169,26 @@ function Checkout({ cart, total, telegramUser, onBack, onComplete }) {
             <span className="label-icon">📍</span>
             Delivery Address *
           </label>
-          <input
-            type="text"
-            className="form-input"
-            placeholder="Enter your full address"
-            value={deliveryAddress}
-            onChange={(e) => setDeliveryAddress(e.target.value)}
-            required
-            aria-label="Delivery address"
-          />
+          <div className="location-input-row">
+            <input
+              type="text"
+              className="form-input"
+              placeholder="Enter your full address"
+              value={deliveryAddress}
+              onChange={(e) => setDeliveryAddress(e.target.value)}
+              required
+              aria-label="Delivery address"
+            />
+            <button 
+              type="button" 
+              className="location-btn"
+              onClick={shareLocation}
+              aria-label="Share location"
+            >
+              {customerLocation ? '✅' : '📍'}
+            </button>
+          </div>
+          {customerLocation && <p className="location-hint">📍 Location shared! Driver can track you.</p>}
 
           <label className="form-label">
             <span className="label-icon">📞</span>

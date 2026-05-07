@@ -131,6 +131,7 @@ function App() {
         telegramUser={user}
         onBack={() => setView('cart')}
         onComplete={() => { clearCart(); setView('menu'); }}
+        tg={tg}
       />
     );
   }
