@@ -1,0 +1,317 @@
+ NAME5 , Menu group , Name ,Price (Main)
+1.SKEWER,01.CHICKEN SKEWERS,TC01. ChickenThigh Skewer,0.75
+,,TC03. Chicken Cartilage,0.85
+,,TC04. Chicken Wing,0.9
+,,TC05. Chicken Gizzard (05),0.75
+,,TC06. Chicken Heart (15),0.9
+,,TC07. Chicken Skewer (50),0.5
+,,TC08. Boneless Chicken Feed(09),0.9
+,,TC10. Grilled Chicken Neck(04),1
+,,TC11. Large Chicken Gizzard(06),1.5
+,,TC12. Chicken Knee (08),0.5
+,,TC16. Pepper Chicken,0.8
+,02.PORK SKEWER,TP01. Pork Belly (10),0.9
+,,TP02. Soft Bone Rib,0.85
+,,TP04. Pork Ear (17),0.9
+,,TP05. Pork Hear,0.9
+,,TP06. Pork Liver,0.9
+,,TP07. Pork Spleen (Krolean Chruk),0.9
+,03.BEEF&LAMB SKEWER,TB01. Khmer Beef,0.85
+,,TB02. Beef Heart (22),0.85
+,,TB03. Beef Liver (16),0.5
+,,TB04. Beef Spleen (07),0.75
+,,TB05. Cow Udder (03),0.85
+,,TB06. Beef Tongue (27),0.75
+,,TB07. Beef Tendon,1.25
+,,TB08. US Short Plate,0.85
+,,TB09. Lamb,1.25
+,,TB10. Marinated Beef Skewer,3
+,,TB11. Beef Belly Wrapped with Beef,1.8
+,04.SEAFOOD SKEWER,TS01. Shrimp,0.5
+,,TS02. Baby Squid 10pcs,2.9
+,,TS03. Whole Squid,2.5
+,,TS04. Scallop,0.9
+,,TS07. Saba Grilled,0.85
+,,TS08. Grilled Catfish(20),0.9
+,05.DUCK SKEWER,TD01. Duck Intestine 20pcs,3
+,,TD02. Duck Breast,1.5
+,06.MUSHROOM SKEWER,TMS01. King Oyster Mushroom(18),0.25
+,,TMS02. Shiitake Mushroom,0.75
+,,TMS03. Snow Mushroom,0.65
+,,TMS04. Enoki (36),0.75
+,,TMS05. Bacon-Wrapped Enoki (2pcs)(01),1.5
+,,TMS06. Enoki mushrooms,0.85
+,07.VEGETABLE SKEWER,TV01. Chinese Morning Glory,0.9
+,,TV02. Zucchini,0.85
+,,TV03. French Bean,0.75
+,,TV04. Baby Cabbage (33),0.5
+,,TV05. Pineaple,0.5
+,,TV06. White Cauliflower,0.75
+,,TV07. Bok Choy,0.65
+,,TV08. Hawaiian Chili,0.65
+,,TV09. Corn (30),1
+,,TV10. Lady Finger,0.65
+,,TV11. Garlic Eggplant,2
+,,TV12. Garlic,0.5
+,,TV13. Celery,0.65
+,,TV14. Chinese Long Chili,0.75
+,,TV15. Baby Corn,0.65
+,,TV16. Wosun,0.5
+,,TV17. Yellow Sweet Potato,0.65
+,,TV18. Potato,0.5
+,,TV19. Three-Color Chili,0.5
+,,TV20. Fried Morning Glory,0.9
+,08.MEAT BALL,TM01. Fish Ball (19),0.5
+,,TM02. Beef Ball,0.9
+,,TM03. Chicken Sausage,1.25
+,,TM04. Chinese Grilled Hot Dog (21),0.75
+,,TM05. Grilled Hot Dog(11),1.8
+,,TM06. Ham,0.75
+,,TM07. Grilled Pâté,0.75
+,09.MEAT AND VEGETABLE SKEWER,TMV01. Chicken with Long Chili (51),0.85
+,,TMV02. Chicken with Enoki Mushroom,0.75
+,,TMV03. Beef with Pineapple,1
+,,TMV04. Beef with Hawaiian Chili & Onion,1
+,,TMV05. Beef with Chinese Long Chili & Pi,1
+,,TMV06. Chicken Heart with Hawaiian Chili,0.85
+,,TMV07. Chicken Gizzard with Baby Corn,0.65
+,,TMV08. Chicken Gizzard & Heart with Chin,0.75
+,,TMV09. Duck Breast with Garlic,1
+,,TMV10. Duck Breast with Long Chili & Swe,1
+,,TMV12. Grilled Black Mushroom(23),0.9
+,,TMV13. Grilled Bamboo Shoot(25),0.8
+,,TMV14. Grilled Zucchini,0.5
+,,TMV15. Grilled Garlic Chives,0.9
+,,TMV16. Grilled Shaking Chili,0.75
+,10.SOUP AND WOK FRIED,TSW01. Braised Boneless Chick Feet (64),3.5
+,,TSW02. Spicy Boneless Chick Feet(63),3.9
+,,TSW03. Spicy Duck Blood Soup(65),2.9
+,,TSW04. Hot Sichuan Fish Soup(60),8.5
+,,TSW05. Sichuan Fish Soup(59),8.5
+,,TSW06. Spicy Panfried Clams,3.75
+,,TSW07. Spicy Panfried Babylon Snails,3.75
+,,TSW08. Spicy Panfried Bamboo Snails,3.75
+,,TSW09. Luosifen GuangXi (61),3.9
+,,TSW10. Black Duck Egg Congee(62),3.9
+,,TSW11. ChengDu Grilled Fish(70),9.5
+,11.SIDE DISH,TSD01. Pork Ear Salad,2.25
+,,TSD02. Lotus Root Salad,2
+,,TSD05. Edamame,3.9
+,,TSD07. Corn Egg Grilled in Aluminium,1.9
+,,TSD08.Enoki Egg Grilled in Aluminiu(66),1.9
+,,TSD09. Egg Tufu Grilled in Aluminium(68),1.9
+,,TSD10. Fried Bun,2.9
+,,TSD12. White Rice,0.75
+,12.OPEN MENU TIGER SKEWER,OPEN DRINK,0
+,,OPEN FOOD,0
+2.ROCKSTAR,01.APPETIZER,CWA01. Fried Beef Balls with Long Beans,3.5
+,,CWA02. Grilled Khmer-Style Beef Balls,4.5
+,,CWA03. Sichuan Beef Jerky,4
+,,CWA04. Khmer Beef Jerky,3.75
+,,CWA05. Deep-Fried Beef Tripe(142),3.25
+,,CWA06. Fried Chicken Joints with Garlic,3.75
+,,CWA07. Chicken Stick (132),3.5
+,,CWA08. Buffalo Wings (126),3.5
+,,CWA09. Fried Chicken with Fish Sauce,3.9
+,,CWA10. Chicken Pops (143),3.25
+,,CWA11. Fried Black Chicken Rolls with Ga,3.5
+,,CWA12. Fried Chicken Pepper Rolls with G,3.8
+,,CWA13. Mexican French Fries,3.5
+,,CWA14. French Fries with Mayonnaise,3
+,,CWA15. Mexican Tortilla Chips with Beef,3.9
+,,CWA16. Deep-Fried Pork Belly with Garlic,4
+,,CWA17. Fried Pork Ribs with Garlic(140),3.9
+,,CWA18. Deep-Fried Small Fish(134),3.5
+,,CWA19. Deep-Fried Shrimp with Spicy Mayo,4
+,,CWA20. Deep-Fried Stuffed Squid(141),4
+,,CWA22. Deep-Fried Mushrooms (135),2.75
+,02.SALAD,CWS01. Beef Carpaccio (179),6.5
+,,CWS02. Grilled Khmer Beef with Prahok Sa,8.5
+,,CWS03. Fresh Oysters (3 pcs) (182),4.5
+,,CWS04. Khmer Beef Carpaccio (177),6.9
+,,CWS05. Khmer Spicy Beef with Kale,4.5
+,,CWS06. Khmer Beef Salad (174),4.5
+,,CWS07. Chicken & Banana Blossom Salad,4
+,,CWS08. Fried Morning Glory Beef Salad,4
+,,CWS09. Spicy Fresh Shrimp with Bitter Me,4.9
+,,CWS10. Khmer-Style Salmon Salad(170),4.9
+,,CWS11. Tako Wasabi (178),3.9
+,,CWS12. Salmon with Soy Sauce(180),6.5
+,,CWS13. Salmon Carpaccio with Koh Kong Sa,7.9
+,,CWS14. Fresh Salmon with Wasabi(181),5.5
+,,CWS15.Mango,2.5
+,03.FRIED RICE,CWF01. Fried Rice with Corn (145),3.5
+,,CWF02. Seafood Fried Rice (146),4.5
+,,CWF03. Cowboy Fried Rice (147),3.9
+,,CWF04. Beef Fried Rice (148),3.75
+,04.STIR-FRIED,CWT01. Italian Beef Balls,5.75
+,,CWT02. Shrimp with Garlic & Olive Oil,5.5
+,,CWT03. Squid with Garlic & Olive Oil,4.9
+,,CWT04. Stir-Fried Chicken with Preserved,3.5
+,,CWT05. Stir-Fried Spicy Beef with Mushro,3.9
+,,CWT06. Stir-Fried Spicy Chicken (166),3.8
+,,CWT07. Stir-Fried Corn with Dried Shrimp,3.8
+,,CWT08. Fried Corn with Salted Egg(164),3.9
+,,CWT09. Spicy Beef Tendon (165),6.8
+,,CWT10. Stir-Fried Morning Glory with Chi,3.8
+,,CWT11. Garlic Butter Clams,4
+,,CWT12. Buffalo Pork Ribs (138),4.9
+,,CWT13. Bamboo Snails with Garlic & Olive,5.8
+,,CWT14. Stir-Fried Beef Tendon with Prese,3.9
+,05.GRILLED,CWG01. Hot Dog Platter,8.8
+,,CWG02. Grilled Creamy Mussels,4
+,,CWG03. Grilled Japanese Stingray,3.5
+,06.OPEN MENU COWBOY,OPEN DRINK,0
+,,OPEN FOOD,0
+,2.COWBOY,White Rice,0.75
+3.MR KIM CHICKEN,01.FRIED CHECKEN,CF01. Classic Chicken ( 4 pcs) (84),5.5
+,,CF02. Classic Chicken ( 7 pcs) (84),8.5
+,,CF03. Classic Chicken (10 pcs) (84),10.5
+,,CF04. Fried Chicken with Korean BBQ Sauc,6.8
+,,CF05. Fried Chicken with Korean BBQ Sauc,10
+,,CF06. Fried Chicken with BBQ Sauce (10 p,13.9
+,,CF07. Fried Chicken Soy & Honey (Whole C,11.5
+,,CF08. Fried Chicken Soy & Honey ( Half C,6.25
+,,CF09. Fried Chicken Honey Garlic (Wh,11.9
+,,CF10. Fried Chicken with Honey Garlic Sa,6.25
+,,CF11. Spicy Seoul Fried Chicken (4 pcs),6.8
+,,CF12. Spicy Seoul Fried Chicken (7 pcs),10
+,,CF13. Spicy Seoul Fried Chicken(10 pcs),13.9
+,,CF14. Sweet Gochujang (4 pcs) (87),6.8
+,,CF15. Sweet Gochujang (7pcs) (87),10
+,,CF16. Sweet Gochujang (10 pcs) (87),13.9
+,02.SNOW CHESS CHICKEN WINGS,CSW01.Creamy Truffle Fried Chicken ( 4pc,5.8
+,,CSW02.Creamy Truffle Fried Chicken ( 7pc,10
+,,CSW03.Creamy Truffle Fried Chicken ( 10p,10
+,,CSW04.Honey Mustard Fried Chicken (4pcs),6.8
+,,CSW05.Honey Mustard Fried Chicken (7pcs),10
+,,CSW06.Honey Mustard Fried Chicken (10pcs,13.9
+,,CSW07. Snowee Chickendae ( 4pcs )(90),6
+,,CSW08. Snowee Chickendae ( 7pcs )(90),9.5
+,,CSW09. Snowee Chickendae ( 10pcs)(90),12.9
+,,CSW10.Garlic Mustard Fried Chicken (4pc),6
+,,CSW11.Garlic Mustard Fried Chicken (7pc),9.5
+,,CSW12.Garlic Mustard Fried Chicken (10pc,12.9
+,,CSW13. Spicy Cheesee Chickendae ( 4pcs ),6
+,,CSW14.Spicy Cheesee Chickendae ( 7pcs ),9.5
+,,CSW15.Spicy Cheesee Chickendae ( 10pcs ),12.9
+,03.ADDITIONAL,CA01. Onion Soy Sauce (111),0
+,,CA02. Cucumber (113),0
+,,CA03. Kimchi Radish (108),1
+,,CA04. Kimchi (109),1
+,,CA05. Yellow Radish (110),1
+,,CA06. Radish (112),0
+,,CA07. White Rice,0.75
+,04.SNACKS,CS01. Kimchi Fried Rice,5.5
+,,CS02. Grilled Boneless Chicken Feet with,5.5
+,,CS03.Classic France Fried,2
+,,CS04.French Fried-Sweet Gochujang,3.5
+,,CS05. French Fried-Cheesee,3
+,,CS06. French Fried-Snowee,3
+,,CS07. French Fried-BBQ Sauce,3.5
+,,CS08. French Fried-Honey Mustard,3.5
+,,CS09. French Fried-Creamy Mayo,3.3
+,05.KOREAN STREET FOOD,CKS01. Tokpoki (114),5.5
+,,CKS02. Korean Rice Cake (116),3.9
+,,CKS03. Korean Chives Pancake (122),3
+,,CKS04. Korean Chives Pancake with Shrimp,3.5
+,,CKS05. Korean Egg Roll (115),3.9
+,,CKS06. Kimchi Kimbab (117),3.3
+,,CKS07. Ham Kimbab (118),3.5
+,,CKS08. Beef Kimbab (119),3.5
+,,CKS09. Potato Cheese Ball (124),3
+,,CKS10. Cheese Stick (123),3
+,,CKS11. Sweet Corn (Sweet Cheese) (120),4.5
+,06.NOODLE & SOUP,CNS01. Kimchi Soup,3.9
+,,CNS02. Korean Fish Cake Soup,3.5
+,,CNS03. Korean Tufu Kimchi Soup,3.9
+,,CNS04. Korean Spicy Dry Noodle,3.5
+,,CNS05. Korean Noodle Soup,3.9
+,07.OPEN MENU CHICKENDAE,OPEN DRINK,0
+,,OPEN FOOD,0
+4.Drink,01.Beer,B01.Cambodia Supreme,1.8
+,,B02.Hanuman,1.8
+,,B03.Hanuman (Black),2
+,,B04.Heineken,2.5
+,,B05.Anchor,1.8
+,,B06.Tiger,2.2
+,,B07.Tiger (Crystal),2.5
+,,B08.Corona,2.8
+,,B09.Krud,1.8
+,,B10.Hoegaarden,3.3
+,,B11.Hoegaarden (Rose),3.3
+,,B12.ABC,3.3
+,,B13.Budwiser,2.5
+,,B14.Singtao (Big),3.5
+,,B15.Snow (Big),3.5
+,,B16.Cambodia Lite Bottle,1.8
+,02.Wine,Ballantine's Finest,40
+,,Glenfiddich 12 Year Old,60
+,,JACK DANIEL'S,60
+,,Jinro Grapes,4.8
+,,Jinro Original,4.8
+,,Jinro Strawberry,4.8
+,,Makgeolli Original,4.8
+,,Makgoelli Chestnut,4.8
+,,Suju Apple,4.8
+,,Suju Original,4.8
+,,Suju Strawberry,4.8
+,,Suntory Whisky,45
+,,TEQUILA 818 BLANCO,65
+,,W01.Makgeolli,4.8
+,,W02.SOJU,4.8
+,03.Non-Alcohol,D01.Water,0.75
+,,D02.Sprite,0.9
+,,D03.Cambodia Cola,0.9
+,,D04.Schweppes (Tonic),1
+,,D05.Bacchus,1.5
+,,D06.Pocari Sweat,1.5
+,,D07.Schweppes,1
+,,D08.Fanta,0.9
+,,D09.Grape Tea,1.5
+,,D10.Herbal Tea,1.25
+,,D11.Kimbui Juice,1.5
+,,D12.Peach Oolong Tea,1.5
+,,D13.Sour Plum Tea,1.25
+,,D14.Sting (Red),0.9
+,,D15.Sting (Yellow),0.9
+,,D16.Vigor,0.9
+,,D17.Korean Grape Juice,1.25
+,,D18.Milkis,1.5
+,,Fruit Platter,10
+,04.COCKTAIL,C01. 3AM Solnism,18
+,,C02. Blush Night,15
+,,C03. Classic Cowboy,12.5
+,,C04. Forest Lychee (Light Green),15
+,,C05. Gentle Vanilla,12.5
+,,C06. Phnom Penh Passion,16.5
+,,C07. Starlight (Blue Color),15
+,,C08. When You Linger,16.5
+,Glass,Anchor Draught (Glass),1
+,,Botanico IPA (Glass),3.5
+,,Cambodia Draught (Glass),1
+,,Hanuman (Black) Draught (Glass),1.5
+,,Hanuman Draught (Glass),1
+,,Heineken Draught (Glass),1.5
+,,Linger Beer(Glass),3.3
+,,Linger Honey(Glass),3.5
+,,TigerDraught (Glass),1.5
+,Jug,Anchor Draught (Jug),3.5
+,,Botanico IPA (Draught) (Jug),13.5
+,,Cambodia Draught (Jug),3.9
+,,Hanuman (Black) Draught (Jug),4.5
+,,Hanuman Draught (Jug),3.9
+,,Heineken Draught (Jug),7.5
+,,Linger Beer Draught (Jug),12.5
+,,Linger Honey Draught (Jug),13.5
+,,TigerDraught (Jug),7.5
+,Tower,Anchor Draught (Tower),9
+,,Botanico IPA (Draught beer)(Tower),24
+,,Cambodia Draught (Tower),9
+,,Hanuman (Black) Draught (Tower),12
+,,Hanuman Draught (Tower),9
+,,Heineken Draught (Tower),14
+,,Linger Beer (Draught beer )(Tower),22
+,,Linger Honey (Tower),24
+,,TigerDraught (Tower),14
+Totals,,,1531.4
