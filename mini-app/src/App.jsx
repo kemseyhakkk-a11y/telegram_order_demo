@@ -29,15 +29,19 @@ function App() {
   }, []);
 
   async function fetchMenu() {
-    const { data: cats } = await supabase
-      .from('menu_categories')
-      .select('*')
-      .order('display_order');
-
     const { data: menuItems } = await supabase
       .from('menu_items')
       .select('*')
       .eq('available', true)
+      .order('display_order');
+
+    // Get category IDs that have available items
+    const availableCategoryIds = [...new Set((menuItems || []).map(item => item.category_id))];
+
+    const { data: cats } = await supabase
+      .from('menu_categories')
+      .select('*')
+      .in('id', availableCategoryIds)
       .order('display_order');
 
     setCategories(cats || []);
