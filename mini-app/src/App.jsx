@@ -18,7 +18,10 @@ function App() {
   useEffect(() => {
     ready();
     expand();
-  }, [ready, expand]);
+    return () => {
+      if (tg) tg.MainButton.hide();
+    };
+  }, [tg, ready, expand]);
 
   useEffect(() => {
     fetchMenu();
@@ -123,7 +126,7 @@ function App() {
     <div className="app">
       <header className="header">
         <h1>🍽️ Restaurant Menu</h1>
-        <button className="cart-btn" onClick={() => setView('cart')}>
+        <button className="cart-btn" onClick={() => setView('cart')} aria-label={`Shopping cart with ${cartCount} items`}>
           🛒 {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
         </button>
       </header>
@@ -135,7 +138,7 @@ function App() {
             className={`category-btn ${selectedCategory === cat.id ? 'active' : ''}`}
             onClick={() => setSelectedCategory(cat.id)}
           >
-            <span className="category-icon">{cat.icon}</span>
+            <span className="category-icon" aria-hidden="true">{cat.icon}</span>
             <span className="category-name">{cat.name}</span>
           </button>
         ))}

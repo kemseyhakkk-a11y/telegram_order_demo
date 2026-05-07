@@ -64,21 +64,21 @@ function Checkout({ cart, total, telegramUser, onBack, onComplete }) {
       </header>
 
       <form className="checkout-form" onSubmit={handleSubmit}>
-        {error && <div className="error-message">{error}</div>}
+        {error && <div className="error-message" role="alert" aria-live="polite">{error}</div>}
 
         <div className="form-group">
-          <label>Name *</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" required />
+          <label htmlFor="checkout-name">Name *</label>
+          <input type="text" id="checkout-name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" autoComplete="name" required />
         </div>
 
         <div className="form-group">
-          <label>Phone *</label>
-          <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Your phone number" required />
+          <label htmlFor="checkout-phone">Phone *</label>
+          <input type="tel" id="checkout-phone" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Your phone number" inputMode="tel" autoComplete="tel" required />
         </div>
 
         <div className="form-group">
-          <label>Delivery Address *</label>
-          <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Street, house, apartment" required />
+          <label htmlFor="checkout-address">Delivery Address *</label>
+          <input type="text" id="checkout-address" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Street, house, apartment" autoComplete="street-address" required />
         </div>
 
         <div className="form-group">
@@ -91,17 +91,17 @@ function Checkout({ cart, total, telegramUser, onBack, onComplete }) {
           {cart.map((item) => (
             <div key={item.id} className="summary-item">
               <span>{item.image_emoji} {item.name} x{item.quantity}</span>
-              <span>${(item.price * item.quantity).toFixed(2)}</span>
+              <span>${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(item.price * item.quantity)}</span>
             </div>
           ))}
           <div className="summary-total">
             <span>Total:</span>
-            <span>${total.toFixed(2)}</span>
+            <span>${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(total)}</span>
           </div>
         </div>
 
         <button type="submit" className="submit-btn" disabled={isSubmitting}>
-          {isSubmitting ? 'Processing...' : `Place Order ($${total.toFixed(2)})`}
+          {isSubmitting ? 'Processing…' : `Place Order ($${new Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(total)})`}
         </button>
       </form>
     </div>
